@@ -3,11 +3,9 @@ package moe.ganen.jikankt.connection
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import io.ktor.client.request.get
-import io.ktor.client.request.header
-import io.ktor.client.statement.HttpResponse
-import io.ktor.client.statement.readText
-import io.ktor.http.HttpHeaders
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 import moe.ganen.jikankt.JikanClient
 import moe.ganen.jikankt.exception.JikanException
 
@@ -16,7 +14,7 @@ import moe.ganen.jikankt.exception.JikanException
  * @param isDebug: a boolean that indicate if you run it on debug or not. If yes, it'll throw exception if something happen.
  * @param url: Custom URL, will use default (Jikan URL) if null or empty.
  */
-class RestClient(private val isDebug: Boolean = false, private val url: String? = null) : JikanClient() {
+class RestClient(private val isDebug: Boolean = false, private val url: String? = null, private val key: String? = null) : JikanClient() {
     private val client = httpClient
     private val gson = Gson()
 
@@ -36,6 +34,9 @@ class RestClient(private val isDebug: Boolean = false, private val url: String? 
 
             val response = client.get<HttpResponse>(url) {
                 header(HttpHeaders.Accept, "application/json")
+                if (key != null) {
+                    header(HttpHeaders.Authorization, key)
+                }
             }
 
             val contentType = response.headers["Content-Type"]
