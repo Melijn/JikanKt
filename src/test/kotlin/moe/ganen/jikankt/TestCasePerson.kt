@@ -37,7 +37,7 @@ class TestCasePerson {
     @Test
     fun `test get person with bad ID`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(false, url = "http://ganen.moe:8800/v3/") }.getPerson(13308)
+            JikanKt.apply { restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/") }.getPerson(13308)
         }
 
         assert(result.name.isNullOrEmpty())
@@ -49,7 +49,7 @@ class TestCasePerson {
     fun `test get person with bad ID then throw exception`() {
         assertThrows<JikanException> {
             runBlocking {
-                JikanKt.apply { restClient = RestClient(true, url = "http://ganen.moe:8800/v3/") }.getPerson(13308)
+                JikanKt.apply { restClient = RestClient(true, url = "https://jikan.melijn.com/public/v3/") }.getPerson(13308)
 
             }
         }
@@ -88,7 +88,7 @@ class TestCasePerson {
     @Test
     fun `test get person picture with bad ID`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(false, url = "http://ganen.moe:8800/v3/") }.getPersonPictures(13308)
+            JikanKt.apply { restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/") }.getPersonPictures(13308)
         }
 
         assert(result.pictures.isNullOrEmpty())
@@ -100,7 +100,7 @@ class TestCasePerson {
     fun `test get person picture with bad ID then throw exception`() {
         assertThrows<JikanException> {
             runBlocking {
-                JikanKt.apply { restClient = RestClient(true, url = "http://ganen.moe:8800/v3/") }
+                JikanKt.apply { restClient = RestClient(true, url = "https://jikan.melijn.com/public/v3/") }
                     .getPersonPictures(13308)
             }
         }
@@ -112,7 +112,7 @@ class TestCasePerson {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-            JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }
+            JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }
         }
     }
 }

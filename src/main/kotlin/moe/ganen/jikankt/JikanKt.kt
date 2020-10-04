@@ -689,5 +689,9 @@ object JikanKt {
         )
     }
 
+    init {
+        JikanClient.JIKANKT_LOG.info("Initialize ${JikanClient.JIKANKT_NAME} version ${JikanClient.JIKANKT_VERSION}")
+    }
+
     //endregion
 }

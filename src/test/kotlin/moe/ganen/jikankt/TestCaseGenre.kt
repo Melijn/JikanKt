@@ -19,7 +19,7 @@ class TestCaseGenre {
                 metadata = MalSubEntity(1, "anime", "Action Anime", "https://myanimelist.net/anime/genre/1/Action")
             )
 
-        val result = runBlocking { JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }.getGenreType(RequestType.ANIME, 1) }
+        val result = runBlocking { JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }.getGenreType(RequestType.ANIME, 1) }
 
         assertEquals(expected.metadata, result.metadata)
         assert(result.manga.isNullOrEmpty())
@@ -86,7 +86,7 @@ class TestCaseGenre {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-            JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }
+            JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }
         }
     }
 }

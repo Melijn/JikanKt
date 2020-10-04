@@ -25,10 +25,10 @@ class TestCaseAnime {
             aired = TimeInterval(simplifiedString = "Apr 3, 2011 to Sep 25, 2011"),
             related = RelatedAnime(adaptation = listOf(MalSubEntity(malId = 25408))),
             producers = listOf(MalSubEntity(malId = 23)),
-            openingThemes = listOf("\"Hana no Iro (ハナノイロ)\" by nano.RIPE (eps 2-13)"),
-            endingThemes = listOf("\"Hana no Iro (ハナノイロ)\" by nano.RIPE (ep 1)")
+            openingThemes = listOf("#1: \"Hana no Iro (ハナノイロ)\" by nano.RIPE (eps 2-13)"),
+            endingThemes = listOf("#1: \"Hana no Iro (ハナノイロ)\" by nano.RIPE (ep 1)")
         )
-        val result = runBlocking { JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }.getAnime(9289) }
+        val result = runBlocking { JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }.getAnime(9289) }
 
         assertEquals(expected.malId, result.malId)
         assertEquals(expected.title, result.title)
@@ -353,7 +353,11 @@ class TestCaseAnime {
     @Test
     fun `test One Piece more info`() {
         val expected =
-            "Episode 492 is the second part of a two part special called Toriko x One Piece Collabo Special - a crossover with Toriko (2011).  The first part is Toriko (2011) episode 1.  The first part aired on Toriko's timeslot at 9:00 and the second part aired on One Piece's timeslot at 9:30.\r\nEpisode 542 is the second part of a two part special called Toriko x One Piece Collabo Special 2 - another crossover with Toriko (2011). The first part is Toriko (2011) episode 51. The first part aired on Toriko's timeslot at 9:00 and the second part aired on One Piece's timeslot at 9:30.\r\nEpisode 590 is the second part of a two part special called Dream 9 Toriko & One Piece & Dragon Ball Z Super Collaboration Special - a crossover with Toriko (2011) and Dragon Ball Z. The first part is Toriko (2011) episode 99. The first part aired on Toriko's timeslot at 9:00 and the second part aired on One Piece's timeslot at 9:30.\r\n(Source: AniDB)"
+            "Episode 492 is the second part of a two part special called Toriko x One Piece Collabo Special - a crossover with Toriko (2011).  The first part is Toriko (2011) episode 1.  The first part aired on Toriko's timeslot at 9:00 and the second part aired on One Piece's timeslot at 9:30.\n" +
+                    "Episode 542 is the second part of a two part special called Toriko x One Piece Collabo Special 2 - another crossover with Toriko (2011). The first part is Toriko (2011) episode 51. The first part aired on Toriko's timeslot at 9:00 and the second part aired on One Piece's timeslot at 9:30.\n" +
+                    "Episode 590 is the second part of a two part special called Dream 9 Toriko & One Piece & Dragon Ball Z Super Collaboration Special - a crossover with Toriko (2011) and Dragon Ball Z. The first part is Toriko (2011) episode 99. The first part aired on Toriko's timeslot at 9:00 and the second part aired on One Piece's timeslot at 9:30.\n" +
+                    "(Source: AniDB)\n" +
+                    "The broadcast of the series' 930th episode was postponed due to COVID-19. From April 26, 2020, the series has been rebroadcasting from episode 892—the beginning of the Wano Country Arc—until further notice."
         val result = runBlocking { JikanKt.getAnimeMoreInfo(21) }
 
         assertEquals(expected, result.moreInfo)
@@ -400,9 +404,9 @@ class TestCaseAnime {
         val expectedSecondPage = AnimeReviews(
             reviews = listOf(
                 Review(
-                    malId = 54289,
-                    reviewer = Reviewer(username = "dariken"),
-                    content = "When I first finished this anime, I gave it 8. But I wasn't entirely honest with myself. This anime is possibly the anime I've subjectively enjoyed the most."
+                    malId = 36849,
+                    reviewer = Reviewer(username = "AliceMargatroid"),
+                    content = "Most anime I watch are completed simply for the sake of completing it, because I made a vow to myself never to list an anime in my own list as \\\"dropped\\\" the moment I started it.\\r\\nNichijou will never be one of those types of anime. It is amazing. Never in my life have I watched an anime filled with so much randomness. Even Lucky Star which has held the undisputed king of randomness anime spot on my list has been dethroned within minutes of the first episode being aired.\\r\\nThis is my first review BTW so forgive me if this review sucks or anything. All theratings are just my personal opinion\\\\n\\\\n\\r\\nStory: 10/10\\\\n\\r\\nI give 10/10 in story for an anime which has no story, but this is precisely why it is so damn amazing. There are jokes placed at almost every corner of each episode, with the timing of each being so perfect that I wonder how much time the producers take to come up with each joke at each precise timing. And where else can one find anime that has people bringing in machine guns to school, riding a goat to school, or even wrestling a deer in school? And I haven't even gone to what happens outside of school. I have found myself laughing time and again that my mother has knocked on my door plenty of times to find me in a laughing fit. \\\\n\\\\n\\r\\nArt: 9/10\\\\n\\r\\nThe art is not perfect, I've seen animes with slightly better art than this, but I find this kind of artwork suits this anime very well. It looks simple at times but it fits in very well, while scenes that required plenty of details are, well, very detailed. I find myself to be rather amazed by the artwork at times.\\\\n\\\\n\\r\\nSound: 10/10\\\\n\\r\\nWith such a wide cast of characters it's gotta be hard to find good VAs for every character who can bring out their true personality and colour, but thankfully they have done it. Most characters, if not all, have VAs that have successfully portrayed their characters style and personality, while others have not gotten enough air time for me to determine that. The BGM is great too, often going well with the scene that is going at that moment.\\\\n\\\\n\\r\\nCharacter: 10/10\\\\n\\r\\nI love the characters here. Yuuko as the dumb one, Mio as the sensible one always keeping Yuuko in check, and Mai as the silent one who always own Yuuko (and sometimes Mio) in whatever she does. These 3 make the perfect combination within the confines of their classroom. Outside the classroom, however, we have Hakase the childish one (literally), Nano the caretaker robot who is oft abused by Hakase, and Sakamoto the cat as the one maintaining the sensibility within the household. And not forgetting the side characters, the teacher (whose name I don't remember) who is scared of students, the goat rider whose looks reminds me of Katsuragi Keima of The World God Only Knows, the mohawk guy, and the principal, among many others. All of these characters converge together to make one of the most entertaining animes I have ever watched. \\\\n\\\\n\\r\\nP.S. Sakamoto is my favourite. The moment he made his introductory speech I knew I was going to love him, and he hasn't disappointed\\\\n\\\\n\\r\\nEnjoyment: 10/10\\\\n\\r\\nNeed I say more? This entire review has been about how great this show is and how much I enjoyed it.\\\\n\\\\n\\r\\nOverall: 10/10\\\\n\\r\\nThis anime is very very much enjoyable, but it probably is not suited for people who don't like randomness anime, who'd rather be able to tell what's going to happen next. This is personal preference, and as a person who watches a lot of such animes filled with randomness, I have to say it's one of the best such animes I've watched."
                 )
             )
         )
@@ -489,7 +493,7 @@ class TestCaseAnime {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-            JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }
+            JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }
         }
     }
 }

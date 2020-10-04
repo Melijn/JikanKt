@@ -78,7 +78,7 @@ class TestCaseUser {
     fun `test get bjir123 profile throw exception`() {
         assertThrows<JikanException> {
             runBlocking {
-                JikanKt.apply { restClient = RestClient(true, url = "http://ganen.moe:8800/v3/") }.getUser("bjir123")
+                JikanKt.apply { restClient = RestClient(true, url = "https://jikan.melijn.com/public/v3/") }.getUser("bjir123")
             }
         }
         runBlocking { delay(3000) }
@@ -87,7 +87,7 @@ class TestCaseUser {
     @Test
     fun `test get bjir123 profile`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(false, url = "http://ganen.moe:8800/v3/") }.getUser("bjir123")
+            JikanKt.apply { restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/") }.getUser("bjir123")
         }
 
         assert(result.username.isNullOrEmpty())
@@ -98,7 +98,7 @@ class TestCaseUser {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-            JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }
+            JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }
         }
     }
 }

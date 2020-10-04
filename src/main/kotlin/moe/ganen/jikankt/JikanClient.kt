@@ -1,9 +1,8 @@
 package moe.ganen.jikankt
 
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.okhttp.OkHttp
-import io.ktor.client.features.json.GsonSerializer
-import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.*
+import io.ktor.client.engine.okhttp.*
+import io.ktor.client.features.json.*
 import moe.ganen.jikankt.connection.RateLimitInterceptor
 import moe.ganen.jikankt.utils.JikanLogger
 import okhttp3.Protocol
@@ -29,13 +28,9 @@ open class JikanClient {
         }
     }
 
-    init {
-        JIKANKT_LOG.info("Initialize $JIKANKT_NAME version $JIKANKT_VERSION")
-    }
-
     companion object {
-        private const val JIKANKT_NAME = "JikanKt"
-        private const val JIKANKT_VERSION = "1.3.2"
+        const val JIKANKT_NAME = "JikanKt"
+        const val JIKANKT_VERSION = "1.3.2"
         val JIKANKT_LOG: Logger = JikanLogger().getLog(JIKANKT_NAME)
     }
 }

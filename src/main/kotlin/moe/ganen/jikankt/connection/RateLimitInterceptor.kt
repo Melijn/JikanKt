@@ -10,7 +10,7 @@ class RateLimitInterceptor : Interceptor {
         var response = chain.proceed(chain.request())
 
         //See: https://jikan.docs.apiary.io/#introduction/http-response
-        if (!response.isSuccessful && response.code() == 429) {
+        if (!response.isSuccessful && response.code == 429) {
             try {
                 JIKANKT_LOG.error("You are being rate limited or Jikan is being rate limited by MyAnimeList, retrying in 4 seconds...")
                 Thread.sleep(4000L)

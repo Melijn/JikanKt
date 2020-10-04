@@ -53,7 +53,7 @@ class TestCaseMagazine {
     fun `test get bad ID magazine return exception`() {
         assertThrows<JikanException> {
             runBlocking {
-                JikanKt.apply { restClient = RestClient(true, url = "http://ganen.moe:8800/v3/") }.getMagazine(676)
+                JikanKt.apply { restClient = RestClient(true, url = "https://jikan.melijn.com/public/v3/") }.getMagazine(676)
             }
         }
         runBlocking { delay(3000) }
@@ -62,7 +62,7 @@ class TestCaseMagazine {
     @Test
     fun `test get bad ID magazine`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(false, url = "http://ganen.moe:8800/v3/") }.getMagazine(676)
+            JikanKt.apply { restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/") }.getMagazine(676)
         }
 
         assert(result.manga.isNullOrEmpty())
@@ -74,7 +74,7 @@ class TestCaseMagazine {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-            JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }
+            JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }
         }
     }
 }

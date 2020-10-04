@@ -1,6 +1,9 @@
+import org.jetbrains.dokka.gradle.DokkaTask
+
+
 plugins {
-    kotlin("jvm") version "1.3.72"
-    id("org.jetbrains.dokka") version "0.10.1"
+    kotlin("jvm") version "1.4.10"
+    id("org.jetbrains.dokka") version "1.4.10"
     maven
 }
 
@@ -19,6 +22,7 @@ val gsonVersion: String by project
 val coroutinesVersion: String by project
 
 dependencies {
+    implementation(kotlin("stdlib"))
     implementation(kotlin("stdlib-jdk8"))
 
     //Coroutines
@@ -54,9 +58,15 @@ tasks {
     test {
         useJUnitPlatform()
     }
+}
 
-    dokka {
-        outputFormat = "html"
-        outputDirectory = "$rootDir/docs"
+tasks.withType<DokkaTask>().configureEach {
+    dokkaSourceSets {
+        named("main") {
+            moduleName.set("Dokka Gradle Example")
+            sourceLink {
+                localDirectory.set(file("src/main/kotlin"))
+            }
+        }
     }
 }

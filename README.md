@@ -43,7 +43,7 @@ fun main() {
     
     //Using custom domain
     runBlocking {
-        val manga = JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/")  }.getManga(2)
+        val manga = JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/")  }.getManga(2)
         println(manga)
     }
 }

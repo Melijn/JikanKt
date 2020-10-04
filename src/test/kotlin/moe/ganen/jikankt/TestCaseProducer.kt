@@ -50,7 +50,7 @@ class TestCaseProducer {
     fun `test get bad ID producer return exception`() {
         assertThrows<JikanException> {
             runBlocking {
-                JikanKt.apply { restClient = RestClient(true, url = "http://ganen.moe:8800/v3/") }.getProducer(712)
+                JikanKt.apply { restClient = RestClient(true, url = "https://jikan.melijn.com/public/v3/") }.getProducer(712)
             }
         }
         runBlocking { delay(3000) }
@@ -59,7 +59,7 @@ class TestCaseProducer {
     @Test
     fun `test get bad ID producer`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(false, url = "http://ganen.moe:8800/v3/") }.getProducer(712)
+            JikanKt.apply { restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/") }.getProducer(712)
         }
 
         assert(result.anime.isNullOrEmpty())
@@ -71,7 +71,7 @@ class TestCaseProducer {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-            JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }
+            JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }
         }
     }
 }

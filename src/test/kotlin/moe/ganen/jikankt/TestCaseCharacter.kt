@@ -37,7 +37,7 @@ class TestCaseCharacter {
     @Test
     fun `test get character with bad ID`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(false, url = "http://ganen.moe:8800/v3/") }.getCharacter(10)
+            JikanKt.apply { restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/") }.getCharacter(10)
         }
 
         assert(result.name.isNullOrEmpty())
@@ -49,7 +49,7 @@ class TestCaseCharacter {
     fun `test get character with bad ID then throw exception`() {
         assertThrows<JikanException> {
             runBlocking {
-                JikanKt.apply { restClient = RestClient(true, url = "http://ganen.moe:8800/v3/") }.getCharacter(10)
+                JikanKt.apply { restClient = RestClient(true, url = "https://jikan.melijn.com/public/v3/") }.getCharacter(10)
             }
         }
 
@@ -87,7 +87,7 @@ class TestCaseCharacter {
     @Test
     fun `test get character picture with bad ID`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(false, url = "http://ganen.moe:8800/v3/") }.getCharacterPictures(10)
+            JikanKt.apply { restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/") }.getCharacterPictures(10)
         }
 
         assert(result.pictures.isNullOrEmpty())
@@ -98,7 +98,7 @@ class TestCaseCharacter {
     @Test
     fun `test get character picture with bad ID then throw exception`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(true, url = "http://ganen.moe:8800/v3/") }.getCharacterPictures(10)
+            JikanKt.apply { restClient = RestClient(true, url = "https://jikan.melijn.com/public/v3/") }.getCharacterPictures(10)
         }
 
         assert(result.pictures.isNullOrEmpty())
@@ -110,7 +110,7 @@ class TestCaseCharacter {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-            JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }
+            JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }
         }
     }
 }

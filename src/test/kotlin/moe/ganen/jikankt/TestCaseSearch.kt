@@ -410,7 +410,7 @@ class TestCaseSearch {
     @Test
     fun `test search random character return empty`() {
         val jikan = JikanKt.apply {
-            restClient = RestClient(false, url = "http://ganen.moe:8800/v3/")
+            restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/")
         }
 
         val expected = CharacterSearchResult()
@@ -424,7 +424,7 @@ class TestCaseSearch {
     fun `test search random character return exception`() {
         assertThrows<JikanException> {
             val jikan = JikanKt.apply {
-                restClient = RestClient(true, url = "http://ganen.moe:8800/v3/")
+                restClient = RestClient(true, url = "https://jikan.melijn.com/public/v3/")
             }
             runBlocking { jikan.searchCharacter("Bjir").results?.get(0) }
         }
@@ -462,7 +462,7 @@ class TestCaseSearch {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-            JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }
+            JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }
         }
     }
 }

@@ -54,7 +54,7 @@ class TestCaseClub {
     fun `test get bad ID club return exception`() {
         assertThrows<JikanException> {
             runBlocking {
-                JikanKt.apply { restClient = RestClient(true, url = "http://ganen.moe:8800/v3/") }.getClub(7787)
+                JikanKt.apply { restClient = RestClient(true, url = "https://jikan.melijn.com/public/v3/") }.getClub(7787)
             }
         }
         runBlocking { delay(3000) }
@@ -63,7 +63,7 @@ class TestCaseClub {
     @Test
     fun `test get bad ID club`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(false, url = "http://ganen.moe:8800/v3/") }.getClub(7787)
+            JikanKt.apply { restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/") }.getClub(7787)
         }
 
         assert(result.mangaRelations.isNullOrEmpty())
@@ -89,7 +89,7 @@ class TestCaseClub {
     @Test
     fun `test get bad ID club members`() {
         val result = runBlocking {
-            JikanKt.apply { restClient = RestClient(false, url = "http://ganen.moe:8800/v3/") }.getClubMembers(7787)
+            JikanKt.apply { restClient = RestClient(false, url = "https://jikan.melijn.com/public/v3/") }.getClubMembers(7787)
         }
 
         assert(result.members.isNullOrEmpty())
@@ -101,7 +101,7 @@ class TestCaseClub {
         @BeforeAll
         @JvmStatic
         internal fun setup() {
-            JikanKt.apply { restClient = RestClient(url = "http://ganen.moe:8800/v3/") }
+            JikanKt.apply { restClient = RestClient(url = "https://jikan.melijn.com/public/v3/") }
         }
     }
 }
