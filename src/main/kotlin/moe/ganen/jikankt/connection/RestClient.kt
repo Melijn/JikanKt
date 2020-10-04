@@ -39,12 +39,12 @@ class RestClient(private val isDebug: Boolean = false, private val url: String? 
                 }
             }
 
-            val contentType = response.headers["Content-Type"]
             val body = response.readText()
 
-            val json = if (contentType?.equals("application/json", true) == true) {
+            val json = try {
                 gson.fromJson(body, JsonElement::class.java)
-            } else {
+            } catch(t: Throwable) {
+                JIKANKT_LOG.warn(t.message)
                 null
             }
 
