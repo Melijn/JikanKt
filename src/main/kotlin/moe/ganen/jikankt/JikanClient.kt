@@ -9,23 +9,21 @@ import okhttp3.Protocol
 import org.slf4j.Logger
 
 open class JikanClient {
-    protected val httpClient by lazy {
-        HttpClient(OkHttp) {
-            engine {
-                config {
-                    protocols(listOf(Protocol.HTTP_1_1))
-                    //see: https://github.com/ktorio/ktor/issues/1708
-                    retryOnConnectionFailure(true)
-                }
-                addInterceptor(RateLimitInterceptor())
+    var httpClient = HttpClient(OkHttp) {
+        engine {
+            config {
+                protocols(listOf(Protocol.HTTP_1_1))
+                //see: https://github.com/ktorio/ktor/issues/1708
+                retryOnConnectionFailure(true)
             }
-
-            install(JsonFeature) {
-                serializer = GsonSerializer()
-            }
-
-            expectSuccess = false
+            addInterceptor(RateLimitInterceptor())
         }
+
+        install(JsonFeature) {
+            serializer = GsonSerializer()
+        }
+
+        expectSuccess = false
     }
 
     companion object {
