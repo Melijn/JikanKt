@@ -1,3 +1,5 @@
+Original project is archived, I will be maintaining this fork to the point where *it works*
+
 ![JikanKt Banner](https://raw.githubusercontent.com/GSculerlor/JikanKt/master/assets/JikanKt.png)
 
 [![Discord Server](https://img.shields.io/discord/460491088004907029.svg?style=flat&logo=discord)](https://discord.gg/4tvCr36) [![CodeFactor](https://www.codefactor.io/repository/github/gsculerlor/jikankt/badge)](https://www.codefactor.io/repository/github/gsculerlor/jikankt) [![](https://jitpack.io/v/GSculerlor/JikanKt.svg)](https://jitpack.io/#GSculerlor/JikanKt)
