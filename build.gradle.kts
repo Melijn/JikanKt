@@ -1,29 +1,25 @@
-import org.jetbrains.dokka.gradle.DokkaTask
-
-
 plugins {
-    kotlin("jvm") version "1.4.10"
-    id("org.jetbrains.dokka") version "1.4.10"
-    maven
+    kotlin("jvm") version "1.5.0"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
+    id("maven-publish")
 }
 
 repositories {
     mavenCentral()
-    jcenter()
-    maven("https://kotlin.bintray.com/ktor")
-    maven("https://kotlin.bintray.com/kotlinx")
+    mavenLocal()
 }
 
-group = "com.github.GSculerlor"
+group = "me.melijn.jikankt"
 version = "1.3.2"
 
-val ktorVersion: String by project
-val gsonVersion: String by project
-val coroutinesVersion: String by project
+val kotlinVersion = "1.5.0"
+val ktorVersion = "1.5.3"
+val gsonVersion = "2.8.6"
+val coroutinesVersion = "1.4.3"
 
 dependencies {
-    implementation(kotlin("stdlib"))
-    implementation(kotlin("stdlib-jdk8"))
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
 
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
@@ -47,12 +43,19 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.3.1")
 }
 
+val sourcesJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
+
 tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+    withType(JavaCompile::class) {
+        options.encoding = "UTF-8"
     }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+    withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class) {
+        kotlinOptions {
+            jvmTarget = "15"
+        }
     }
 
     test {
@@ -60,13 +63,21 @@ tasks {
     }
 }
 
-tasks.withType<DokkaTask>().configureEach {
-    dokkaSourceSets {
-        named("main") {
-            moduleName.set("Dokka Gradle Example")
-            sourceLink {
-                localDirectory.set(file("src/main/kotlin"))
+
+publishing {
+    repositories {
+        maven {
+            url = uri("https://nexus.melijn.com/repository/maven-releases/")
+            credentials {
+                username = property("melijnPublisher").toString()
+                password = property("melijnPassword").toString()
             }
+        }
+    }
+    publications {
+        register("mavenJava", MavenPublication::class) {
+            from(components["java"])
+            artifact(sourcesJar.get())
         }
     }
 }
